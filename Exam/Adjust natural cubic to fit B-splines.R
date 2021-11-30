@@ -1,4 +1,4 @@
-#Natural cubic splines
+#B-Splines
 library(openxlsx)
 library(dplyr)
 library(tidyverse)
