@@ -545,62 +545,62 @@ ggplot(age_plot, aes(age_plot[,1])) + ggtitle("Plot of Age") + theme(plot.title 
 
 
 
-# Make the Pairs Plot
-pairs(d[1:7],col=as.factor(d$chd))
+# # Make the Pairs Plot
+# pairs(d[1:7],col=as.factor(d$chd))
 
-#Fitting a logistic regression model to the data
-heartModel=glm(chd~sbp+tobacco+ldl+famhist+obesity+alcohol+age,family='binomial',data=d)
-summary(heartModel)
+# #Fitting a logistic regression model to the data
+# heartModel=glm(chd~sbp+tobacco+ldl+famhist+obesity+alcohol+age,family='binomial',data=d)
+# summary(heartModel)
 
-#Fitting a natural spline to the data
+# #Fitting a natural spline to the data
 
-format = "chd ~ ns(sbp,df=4) + ns(tobacco,df=4) + ns(ldl,df=4) + famhist + ns(obesity,df=4) + ns(alcohol,df=4) + ns(age,df=4)"
-format = formula(format)
+# format = "chd ~ ns(sbp,df=4) + ns(tobacco,df=4) + ns(ldl,df=4) + famhist + ns(obesity,df=4) + ns(alcohol,df=4) + ns(age,df=4)"
+# format = formula(format)
 
-?glm
-splineModel = glm( format, data=d, family=binomial )
-print( summary(splineModel), digits=3 )
+# ?glm
+# splineModel = glm( format, data=d, family=binomial )
+# print( summary(splineModel), digits=3 )
 
-drop1(splineModel, scope=format, test="Chisq" )
+# drop1(splineModel, scope=format, test="Chisq" )
 
-backstep2 = step(splineModel) # Backwards selection is the default
-summary(backstep2)
-drop1( backstep2, test="Chisq" )
+# backstep2 = step(splineModel) # Backwards selection is the default
+# summary(backstep2)
+# drop1( backstep2, test="Chisq" )
 
-splineModel$coefficients
-length(splineModel$coefficients)
+# splineModel$coefficients
+# length(splineModel$coefficients)
 
-#Plot for sbp
-sbp = d$sbp
+# #Plot for sbp
+# sbp = d$sbp
 
-e1 = 0.4
-e2 = 0.6
-e4 = max(sbp)
-
-
+# e1 = 0.4
+# e2 = 0.6
+# e4 = max(sbp)
 
 
 
-theta1 = -1.47936736 #beta1
-theta2 = -1.351182 #beta2
-theta3 = -3.75372259#theta3
-theta4 = 1.39731908#theta4
-
-thetaprime1 = theta1*(e4 - e1)
-thetaprime2 = theta2*(e4 - e2)
-thetaprime3 = theta3*(e4 - e3)
-thetaprime4 = theta4*(e4 - e4)
-
-dk3 = ((sbp - e3)^3 - (sbp - e4)^3)/(e4-e3)
-dk4 = 0
-
-n1 = 1
-n2 = sbp
-n3 = dk3 - dk3
-n4 = dk4 - dk3
 
 
-f.sbp =  thetaprime1*n1 + thetaprime2*n2 + thetaprime3*n3 + thetaprime4*n4
+# theta1 = -1.47936736 #beta1
+# theta2 = -1.351182 #beta2
+# theta3 = -3.75372259#theta3
+# theta4 = 1.39731908#theta4
+
+# thetaprime1 = theta1*(e4 - e1)
+# thetaprime2 = theta2*(e4 - e2)
+# thetaprime3 = theta3*(e4 - e3)
+# thetaprime4 = theta4*(e4 - e4)
+
+# dk3 = ((sbp - e3)^3 - (sbp - e4)^3)/(e4-e3)
+# dk4 = 0
+
+# n1 = 1
+# n2 = sbp
+# n3 = dk3 - dk3
+# n4 = dk4 - dk3
 
 
-plot(sbp, f.sbp)
+# f.sbp =  thetaprime1*n1 + thetaprime2*n2 + thetaprime3*n3 + thetaprime4*n4
+
+
+# plot(sbp, f.sbp)
