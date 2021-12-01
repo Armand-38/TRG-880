@@ -28,7 +28,7 @@ Dataset_lowvif <- function(num_samples = 2000000){ # Will have VIF less than 5
   y  <- x1 + x2*2 + x3*0.5 + x4**2 + 3 + rnorm(n = num_samples, mean = 0, sd = 1) # add random error to the model
   data <- data.frame(x1, x2, x3, x4, y)
   return(data)
-}
+} 
 
 Dataset_moderatevif <- function(num_samples = 2000000){ # Will have VIF between 5 and 10
   gen1 <- rnorm(n = num_samples, mean = 80, sd= 10)
